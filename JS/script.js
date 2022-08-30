@@ -5,16 +5,16 @@ let compWins = 0
 //evaluate rock paper scissors winner from player input and computer input
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        playerWins +=1;
-        compWins +=1;
+        playerWins++;
+        compWins++;
         return `It's a tie! Your score: ${playerWins}, Computer score: ${compWins}`;
     } else if ((playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")
     || (playerSelection == "rock" && computerSelection == "scissors")) {
-        playerWins +=1;
+        playerWins++;
         return `You win! ${playerSelection} beats ${computerSelection}. Your score: ${playerWins}, Computer score: ${compWins}`;
     } else if ((playerSelection == "scissors" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "paper")
     || (playerSelection == "paper" && computerSelection == "scissors")) {
-        compWins +=1;
+        compWins++;
         return `You lose! ${computerSelection} beats ${playerSelection}. Your score: ${playerWins}, Computer score: ${compWins}`;
     } else {
         return "Invalid - try again";
