@@ -1,21 +1,17 @@
 //set up counters
-let playerWins = 0
-let compWins = 0
+let playerWins = 0;
+let compWins = 0;
 
 //evaluate rock paper scissors winner from player input and computer input
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        playerWins++;
-        compWins++;
-        return `It's a tie! Your score: ${playerWins}, Computer score: ${compWins}`;
+        return `It's a tie! Your score: ${playerWins+=1}, Computer score: ${compWins+=1}`;
     } else if ((playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")
     || (playerSelection == "rock" && computerSelection == "scissors")) {
-        playerWins++;
-        return `You win! ${playerSelection} beats ${computerSelection}. Your score: ${playerWins}, Computer score: ${compWins}`;
+        return `You win! ${playerSelection} beats ${computerSelection}. Your score: ${playerWins+=1}, Computer score: ${compWins}`;
     } else if ((playerSelection == "scissors" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "paper")
     || (playerSelection == "paper" && computerSelection == "scissors")) {
-        compWins++;
-        return `You lose! ${computerSelection} beats ${playerSelection}. Your score: ${playerWins}, Computer score: ${compWins}`;
+        return `You lose! ${computerSelection} beats ${playerSelection}. Your score: ${playerWins}, Computer score: ${compWins+=1}`;
     } else {
         return "Invalid - try again";
     }
@@ -70,7 +66,6 @@ function game() {
         }
 
         //call playRound function and print result to console
-        playRound(playerSelection, computerSelection);
         console.log(playRound(playerSelection, computerSelection));
 }
 end();
