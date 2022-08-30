@@ -1,14 +1,9 @@
-console.log("Testing");
-
-
-
-
-
+//set up counters
 let playerWins = 0
 let compWins = 0
 
 
-
+//evaluate rock paper scissors winner from player input and computer input
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         playerWins +=1;
@@ -37,6 +32,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+//ending message
 function end(){
     if (playerWins > compWins) {
         console.log(`Game over! You won! Good job!`);
@@ -47,16 +43,19 @@ function end(){
     }
     }
 
+//
 function game() {
+//setting up loop
     for (let i = 0; i < 5; i++) {
+        //Create function getRandomInt to return a random integer 1, 2, or 3
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
         }
-        //Create function getRandomInt to return a random integer 1, 2, or 3
-
-        const randomInt = getRandomInt(3);
+        
         //Create variable randomInt to store function getRandomInt
+        const randomInt = getRandomInt(3);
 
+        //Create function getComputerChoice to randomly return variable 'Rock', 'Paper', or 'Scissors' based on the integer
         function getComputerChoice() {
             if(randomInt === 0) {
                 return "rock";
@@ -67,15 +66,15 @@ function game() {
             }
             }
             console.log(getComputerChoice());
-        //Create function getComputerChoice to randomly return variable 'Rock', 'Paper', or 'Scissors' based on the integer
 
+        //Create variable computerSelection with value being the output of getComputerChoice()
         const computerSelection = getComputerChoice();
         console.log(computerSelection);
-        //Create variable computerSelection with value being the output of getComputerChoice()
-        
+
+        //Ask user for input rock, paper, or scissors, and store in variable "playerSelection"        
         playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-        //Ask user for input rock, paper, or scissors, and store in variable "playerSelection"
-        
+
+        //call playRound function and print result to console
         playRound(playerSelection, computerSelection);
         console.log(playRound(playerSelection, computerSelection));
 }
