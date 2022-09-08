@@ -2,9 +2,42 @@
 let playerWins = 0;
 let compWins = 0;
 
-//evaluate rock paper scissors winner from player input and computer input
+let playerSelection;
+
+const container = document.querySelector('#container');
+
+const rock = document.createElement('button');
+rock.textContent = "Rock";
+rock.setAttribute('id', "rock");
+
+
+const paper = document.createElement('button');
+paper.textContent = "Paper";
+paper.setAttribute('id', "paper");
+
+
+
+const scissors = document.createElement('button');
+scissors.textContent = "Scissors";
+scissors.setAttribute('id', "scissors");
+
+
+container.appendChild(rock);
+container.appendChild(paper);
+container.appendChild(scissors);
+
+let buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+    playerSelection = `${button.id}`; 
+    game();
+    });
+});
+
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection == computerSelection) {
+    if ((playerWins >= 5) || (compWins >= 5)) {
+        return `Winner already determined.`;
+    } else if (playerSelection == computerSelection) {
         return `It's a tie! Your score: ${playerWins+=1}, Computer score: ${compWins+=1}`;
     } else if ((playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")
     || (playerSelection == "rock" && computerSelection == "scissors")) {
@@ -17,33 +50,30 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//ending message
-function end(){
-    if (playerWins > compWins) {
-        console.log(`Game over! You won! Good job!`);
-    } else if (compWins > playerWins) {
-        console.log(`Game over! The computer won! Better luck next time!`);
-    } else if ((compWins == playerWins) && (compWins > 0 || playerWins > 0)) {
-        console.log(`Game over! You tied! Good job!`);
+function endGame(playerWins, compWins){
+    if ((playerWins > 4) || (compWins > 4)) {
+    return "The game is over.";   
+    } else if ((playerWins == 5) || (compWins == 5)) {
+        if (playerWins > compWins) {
+            return `Game over! You won! Good job!`;
+        }   else if (compWins > playerWins) {
+            return `Game over! The computer won! Better luck next time!`;
+        }   else {
+            return `Game over! You tied! Good job!`;
+        };
     } else {
-        console.log(`Game aborted. Refresh to start over.`)
+        return `Play another round!`;
     }
-    }
+}
 
-//
 function game() {
-//setting up loop
-    for (let i = 0; i < 5; i++) {
-        //Create function getRandomInt to return a random integer 1, 2, or 3
-        function getRandomInt(max) {
+        function getRandomInt(max) {         //Create function getRandomInt to return a random integer 1, 2, or 3
             return Math.floor(Math.random() * max);
         }
-        
-        //Create variable randomInt to store function getRandomInt
-        const randomInt = getRandomInt(3);
+    
+    const randomInt = getRandomInt(3);         //Create variable randomInt to store function getRandomInt
 
-        //Create function getComputerChoice to randomly return variable 'Rock', 'Paper', or 'Scissors' based on the integer
-        function getComputerChoice() {
+    function getComputerChoice() {             //Create function getComputerChoice to randomly return variable 'Rock', 'Paper', or 'Scissors' based on the integer
             if(randomInt === 0) {
                 return "rock";
             } else if(randomInt === 1) {
@@ -53,22 +83,14 @@ function game() {
             }
             }
 
-        //Create variable computerSelection with value being the output of getComputerChoice()
-        const computerSelection = getComputerChoice();
+    const computerSelection = getComputerChoice();              //Create variable computerSelection with value being the output of getComputerChoice()
 
+        
 
-        //Ask user for input rock, paper, or scissors, and store in variable "playerSelection"        
-        playerSelection = prompt("Rock, paper, or scissors?")
-        if (playerSelection) {
-            playerSelection.toLowerCase();
-        } else {
-            break;
-        }
-
-        //call playRound function and print result to console
-        console.log(playRound(playerSelection, computerSelection));
+    const results = document.createElement('div');
+    results.textContent = `${playRound(playerSelection, computerSelection)}`;
+    container.appendChild(results);
+    const end = document.createElement('div');
+    end.textContent = `${endGame(playerWins, compWins)}`;
+    container.appendChild(end);
 }
-end();
-}
-
-game()
