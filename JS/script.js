@@ -10,17 +10,13 @@ const rock = document.createElement('button');
 rock.textContent = "Rock";
 rock.setAttribute('id', "rock");
 
-
 const paper = document.createElement('button');
 paper.textContent = "Paper";
 paper.setAttribute('id', "paper");
 
-
-
 const scissors = document.createElement('button');
 scissors.textContent = "Scissors";
 scissors.setAttribute('id', "scissors");
-
 
 container.appendChild(rock);
 container.appendChild(paper);
@@ -41,17 +37,18 @@ function playRound(playerSelection, computerSelection) {
         return `It's a tie! Your score: ${playerWins+=1}, Computer score: ${compWins+=1}`;
     } else if ((playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")
     || (playerSelection == "rock" && computerSelection == "scissors")) {
-        return `You win! ${playerSelection} beats ${computerSelection}. Your score: ${playerWins+=1}, Computer score: ${compWins}`;
+        return `You win! ${playerSelection[0].toUpperCase() + playerSelection.substring(1)} beats ${computerSelection}. Your score: ${playerWins+=1}, Computer score: ${compWins}`;
     } else if ((playerSelection == "scissors" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "paper")
     || (playerSelection == "paper" && computerSelection == "scissors")) {
-        return `You lose! ${computerSelection} beats ${playerSelection}. Your score: ${playerWins}, Computer score: ${compWins+=1}`;
+        return `You lose! ${computerSelection[0].toUpperCase() + computerSelection.substring(1)} beats ${playerSelection}. Your score: ${playerWins}, Computer score: ${compWins+=1}`;
     } else {
         return "Invalid - try again";
     }
 }
 
+
 function endGame(playerWins, compWins){
-    if ((playerWins > 4) || (compWins > 4)) {
+    if ((playerWins > 5) || (compWins > 5)) {
     return "The game is over.";   
     } else if ((playerWins == 5) || (compWins == 5)) {
         if (playerWins > compWins) {
