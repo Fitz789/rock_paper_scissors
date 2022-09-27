@@ -29,10 +29,18 @@ selections.appendChild(scissors);
 let choices = document.querySelectorAll('.choice');         //activate game through buttons
     choices.forEach((choice) => {
         choice.addEventListener('click', () => {
+        choice.classList.add("clicked");
         playerSelection = `${choice.id}`; 
         game();
         });
     });
+
+function removeTransition(e) {
+    if (e.propertyName !== 'background-color') return;
+    this.classList.remove("clicked");
+}
+
+choices.forEach(choice => choice.addEventListener('transitionend', removeTransition));
 
 const results = document.querySelector('#results');
     results.textContent = '______';
@@ -117,6 +125,7 @@ function game() {
     compScores.textContent = `Computer score: ${compWins}`;
 
     startOver.addEventListener('click', () => {
+        startOver.classList.add("clicked");
         playerWins = 0;
         compWins = 0;
         results.textContent = "______";
@@ -124,5 +133,6 @@ function game() {
         compScores.textContent = `Computer score: ${compWins}`;
         end.textContent = "______";
         });
-
+    
+        startOver.addEventListener('transitionend', removeTransition);
 }
