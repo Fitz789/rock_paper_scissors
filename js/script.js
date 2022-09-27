@@ -26,21 +26,17 @@ selections.appendChild(rock);
 selections.appendChild(paper);
 selections.appendChild(scissors);
 
+
+
 let choices = document.querySelectorAll('.choice');         //activate game through buttons
     choices.forEach((choice) => {
         choice.addEventListener('click', () => {
-        choice.classList.add("clicked");
         playerSelection = `${choice.id}`; 
         game();
         });
     });
 
-function removeTransition(e) {
-    if (e.propertyName !== 'background-color') return;
-    this.classList.remove("clicked");
-}
 
-choices.forEach(choice => choice.addEventListener('transitionend', removeTransition));
 
 const results = document.querySelector('#results');
     results.textContent = '______';
@@ -63,6 +59,27 @@ container.appendChild(results);
 container.appendChild(scores);
 container.appendChild(end);
 container.appendChild(startOver);
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        button.classList.remove("hover");
+        button.classList.add("clicked");
+    })
+});
+buttons.forEach((button) => {
+    button.addEventListener('mouseover', () => {
+        button.classList.add("hover");
+    })
+});
+
+function removeTransition(e) {
+    if (e.propertyName !== 'background-color') return;
+    this.classList.remove("clicked");
+}
+
+buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
+buttons.forEach(button => button.addEventListener('mouseout', () => button.classList.remove("hover")));
 
 
 function playRound(playerSelection, computerSelection) {
@@ -125,7 +142,6 @@ function game() {
     compScores.textContent = `Computer score: ${compWins}`;
 
     startOver.addEventListener('click', () => {
-        startOver.classList.add("clicked");
         playerWins = 0;
         compWins = 0;
         results.textContent = "______";
@@ -133,6 +149,4 @@ function game() {
         compScores.textContent = `Computer score: ${compWins}`;
         end.textContent = "______";
         });
-    
-        startOver.addEventListener('transitionend', removeTransition);
 }
