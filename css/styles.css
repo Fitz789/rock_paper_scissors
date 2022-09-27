@@ -58,7 +58,7 @@ button {
     font-size: 20px;
     font-weight: bold;
     font-family: "Times New Roman", Times, serif;
-    transition:all 0.07s;
+    transition:all 0.1s;
 }
 
 .clicked {
@@ -66,7 +66,7 @@ button {
 }
 
 .hover {
-    background-color: lavender;
+    background-color: rgb(224, 146, 224);
 }
 
 #results,
