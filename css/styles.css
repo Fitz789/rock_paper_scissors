@@ -65,6 +65,10 @@ button {
     background-color: purple;
 }
 
+.hover {
+    background-color: lavender;
+}
+
 #results,
 #score,
 #endGame {
